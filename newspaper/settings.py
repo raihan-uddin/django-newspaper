@@ -78,9 +78,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'newspaper',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '3306',
+        'default-character-set': 'utf8',
         'OPTIONS': {
             'sql_mode': 'traditional',
             # 'read_default_file': '/path/to/my.cnf',
