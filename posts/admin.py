@@ -35,6 +35,14 @@ class SubCategoryAdmin(admin.ModelAdmin):
     show_full_result_count = True
     readonly_fields = ('created_at',)
 
+    def get_form(self, request, obj=None, **kwargs):
+        form = super(SubCategoryAdmin,self).get_form(request, obj,**kwargs)
+        # form class is created per request by modelform_factory function
+        # so it's safe to modify
+        #we modify the the queryset
+        form.base_fields['category'].queryset = form.base_fields['category'].queryset.filter(has_child=True)
+        return form
+
 @admin.register(Tags)
 class TagsAdmin(admin.ModelAdmin):
     date_hierarchy='created_at'
