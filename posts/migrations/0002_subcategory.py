@@ -7,30 +7,25 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    initial = True
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('posts', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Category',
+            name='SubCategory',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, unique=True, verbose_name='Category')),
-                ('slug', models.SlugField(max_length=200, unique=True)),
-                ('bangla', models.CharField(max_length=255, unique=True)),
-                ('has_child', models.BooleanField(default=True)),
+                ('name', models.CharField(max_length=200, verbose_name='Sub Category')),
+                ('slug', models.SlugField(max_length=200)),
+                ('bangla', models.CharField(max_length=255)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('has_shows_in_menu', models.BooleanField(default=True)),
                 ('position', models.IntegerField(null=True, unique=True)),
                 ('status', models.BooleanField(choices=[(True, 'Active'), (False, 'Deactive')], default=True)),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='Category', to=settings.AUTH_USER_MODEL)),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='posts.Category')),
+                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='+', to=settings.AUTH_USER_MODEL)),
             ],
-            options={
-                'verbose_name': 'Category',
-                'verbose_name_plural': 'Categories',
-            },
         ),
     ]

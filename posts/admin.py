@@ -13,7 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_per_page = 30
     list_max_show_all = 200
     paginator = Paginator
-    list_display = ('name', 'status', 'created_by', 'has_child', 'has_shows_in_menu', 'position', 'created_at')
+    list_display = ('name', 'bangla', 'status', 'created_by', 'has_child', 'has_shows_in_menu', 'position', 'created_at')
     list_filter = ('created_at', 'has_child', 'has_shows_in_menu', 'status',)
     search_fields = ('name',)
     prepopulated_fields = {'slug': ('name', )}
@@ -29,7 +29,7 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_max_show_all = 200
     paginator = Paginator
     search_fields = ('name',)
-    list_display = ('name', 'category', 'status', 'has_shows_in_menu', 'position', 'created_at')
+    list_display = ('name', 'bangla', 'category', 'status', 'has_shows_in_menu', 'position', 'created_at')
     list_filter = ('category', 'status', 'has_shows_in_menu', 'created_at', 'created_by')
     prepopulated_fields = {'slug': ('name', )}
     show_full_result_count = True
