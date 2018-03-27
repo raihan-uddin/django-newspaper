@@ -2,7 +2,7 @@
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib import admin
-from posts.models import Category, SubCategory
+from posts.models import Category, SubCategory, Tags
 
 
 # Register your models here.
@@ -34,3 +34,16 @@ class SubCategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
     show_full_result_count = True
     readonly_fields = ('created_at',)
+
+@admin.register(Tags)
+class TagsAdmin(admin.ModelAdmin):
+    date_hierarchy='created_at'
+    list_per_page = 30
+    list_max_show_all = 200
+    show_full_result_count = True
+    paginator = Paginator
+    search_fields = ('name',)
+    list_display = ('name', 'slug', 'created_at')
+    prepopulated_fields = {'slug': ('name', )}
+    readonly_fields = ('created_at',)
+
